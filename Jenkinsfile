@@ -32,7 +32,7 @@ pipeline {
             junit '**/target/surefire-reports/TEST-*.xml'
             archiveArtifacts 'target/*.jar'
             emailext subject: "Job: \'${JOB_NAME}\' (${BUILD_NUMBER}) ${currentBuild.result}",
-                body: "\'${JOB_NAME}\' job has completed with status ${currentBuild.result}
+                body: "\'${JOB_NAME}\' job has completed with status ${currentBuild.result} /
                     Please refer to the build url: ${BUILD_URL}",
                 attachLog: true,
                 compressLog: true,
