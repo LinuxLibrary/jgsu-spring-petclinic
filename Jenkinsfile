@@ -11,20 +11,22 @@ pipeline {
         git url: 'https://github.com/LinuxLibrary/jgsu-spring-petclinic', branch: 'master'
       }
     }
-    parallel {
-      stage ('Build') {
-        steps {
-          sh './mvnw compile'
+    stage ('Build/Test/Package') {
+      parallel {
+        stage ('Build') {
+          steps {
+            sh './mvnw compile'
+          }
         }
-      }
-      stage ('Test') {
-        steps {
-          sh './mvnw test'
+        stage ('Test') {
+          steps {
+            sh './mvnw test'
+          }
         }
-      }
-      stage ('Package') {
-        steps {
-          sh './mvnw package'
+        stage ('Package') {
+          steps {
+            sh './mvnw package'
+          }
         }
       }
     }
